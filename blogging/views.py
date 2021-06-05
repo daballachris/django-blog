@@ -8,19 +8,19 @@ from django.views.generic.detail import DetailView
 
 class BlogListView(ListView):
     model = Post
-    template_name = 'blogging/list.html'
+    template_name = "blogging/list.html"
 
     def get_queryset(self):
         queryset = Post.objects.all()
         post = queryset.exclude(published_date__exact=None)
-        published = post.order_by('-published_date')
+        published = post.order_by("-published_date")
 
         return published
 
 
 class BlogDetailView(DetailView):
     model = Post
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
